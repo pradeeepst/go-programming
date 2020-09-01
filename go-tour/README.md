@@ -178,16 +178,72 @@ default:
 fmt.Println("Good evening.")
 ```
 
-## Pointers 
+## Pointers
 
+Go has pointers. A pointer holds the memory address of a value.
 
+```go
+var p *int
+i := 42
+p = &i
+fmt.Println(*p) // read i through the pointer p
+*p = 21         // set i through the pointer p
+fmt.Println(*p) // prints 21 as its updated via pointer.
+```
+
+## Structs
+
+Struct is a collection of fields.
+Struct fields are accessed via DOT.
+Values must be provided for all components, if values for field is missing .
+Pointers are used to access the struct elements.
+
+```go
+type name_of_struct struct {
+    A string
+    B string
+    X int
+    Y int
+}
+
+fmt.Println(name_of_struct{"hello","world", 3,33})
+s := name_of_struct{"hello", "world", 3, 33}
+fmt.Println(s.B)
+p = &s
+p.B = "hello" // struct elements are accessed by pointers as well.
+
+```
+
+## Arrays
+
+The type [n]T is an array of n values of type T.
+
+### Slices
+
+An array has a fixed size. A slice, on the other hand, is a dynamically-sized, flexible view into the elements of an array. In practice, slices are much more common than arrays.
+A slice does not store any data, it just describes a section of an underlying array.
+
+Changing the elements of a slice modifies the corresponding elements of its underlying array.
+
+Other slices that share the same underlying array will see those changes.
+
+```go
+var a [10] int // int array of size 10
+
+primes := [6]int{2, 3, 5, 7, 11, 13}
+
+var s []int = primes[1:4]
+fmt.Println(s)
+```
 
 ## Keywords
 
 func - declares the funcion
 package - declares the package
+import - Import a package
 for - for loop
 switch - switch case
 var - declare variable
 return - Function return statement
 defer - A defer statement defers the execution of a function until the surrounding function returns
+struct - collection of fields
